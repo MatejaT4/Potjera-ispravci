@@ -1,4 +1,4 @@
-****Prije pokretanja potrebno je instalirati Sound library.****
+Prije pokretanja potrebno je instalirati Sound library.
 
 # Potjera
 
