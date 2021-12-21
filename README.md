@@ -1,7 +1,10 @@
+****Prije pokretanja potrebno je instalirati Sound library.****
+
 # Potjera
 
 ## Pravila igre
 
+*  odaberite želite li igrati protiv drugog igrača ili protiv računala
 *  kako bi zapoceli igru pritisnite tipku `Space`
 
 ### Prva faza
@@ -26,10 +29,7 @@
 * #### Upute za odgovaranje na pitanja
   * igrač igra na tipkama `a`,`s` i `d` koje redom označavaju odgovor pod a, pod b i pod c
   * lovac igra na tipkama `j`,`k`,`l` koje redom označavaju odgovor pod a, pod b i pod c
-  * nakon što obojica odaberu odgovor potrebno je kliknuti tipku `Enter` 3 puta:
-    * kako bi se pokazao točan odgovor
-    * za pomak potrebne pomake na igraćoj ploči
-    * za prikaz idućeg pitanja
+  * nakon što obojica odaberu odgovor potrebno je kliknuti tipku `Enter` za prelazak na iduće pitanje
 
 ### Nastavak igre
 
@@ -44,3 +44,4 @@
 
 ### Napomena:
 * uvesti konstante za neke cesto koristene koordinate unutar koda
+* komentirati kod
