@@ -1,4 +1,6 @@
-boolean pocetna, prva, druga, izbor, treca, zavrsni, win, pravila;
+import processing.sound.*;
+
+boolean pocetna, prva, druga, izbor, treca, zavrsni, win, pravila, lovacIgrac;
 Pocetni pocetni;
 Prva Faza1;
 Druga Faza2;
@@ -21,6 +23,10 @@ color igrac = color(0, 108, 196);
 color netocno = color(178,34,34);
 color tocno = color(0,81,34);
 PFont f;
+
+SoundFile song1;
+SoundFile song2;
+SoundFile song3;
 
 void setup(){
   size(800,800);
@@ -57,6 +63,11 @@ void setup(){
   zavrsni = false;
   win = false;
   pravila = false;
+  lovacIgrac = false;
+  
+  song1 = new SoundFile(this, "Correct-answer.mp3");
+  song2 = new SoundFile(this, "Wrong-answer.mp3");
+  song3 = new SoundFile(this, "Chase.mp3");
 }
 
 void draw(){

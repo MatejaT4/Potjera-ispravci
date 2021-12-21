@@ -1,6 +1,25 @@
 class Prva{
   
   String[] pitanja = {"Tko je ubio roditelje Harry Pottera?",
+  "Koje je godine Titanik potonuo u ocean 15. travnja?",
+"Koji je metal otkrio Hans Christian Oersted 1825. godine?",
+"S kojeg se otoka Napoleon zaputio na zadnju, stodnevnu vladavinu?",
+"Koji hormon najčešće nazivamo hormonom sreće?",
+"Što znači novela iz naslova Držićeva djela\n 'Novela od Stanca'?",
+"Koja anorganska kiselina ima formulu H2SO3?",
+"Koja je žlijezda čovječjeg organizma najveća?",
+"Kome je predano beživotno Hektorovo tijelo\n na završetku 'Ilijade'?",
+"Koje godine je Hrvatska rukometna reprezentacija zadnji\n put bila u finalu Svjetskog prvenstva do 2019.?",
+"Kako se naziva rulet u kojem igrač može\n izgubiti život?",
+"Henrik Ibsen pripada čijoj književnosti?",
+"Koji se najveći broj bodova može ubosti s \n 3 strelice u pikadu?",
+"Kako se zove majka grčkog junaka Ahileja?",
+"U kojoj je zemlji izumljen\n prvi vodeni sat na svijetu?",
+"U kojem je francuskom gradu 1945. potpisana \n bezuvjetna kapitulacija Njemačke?",
+"Tko je najbolji strijelac u povijesti HNL-a?",
+"Koja je najprometnija kanadska pomorska luka?",
+"Koliko je krugova pakla u Danteovoj \n Božanstvenoj komediji?",
+"Tko se smatra izumiteljem frižidera?",
     "Junak kojeg romana ruskog romantizma\nje suvišni čovjek Pečorin?",
     "Koji je glumac 1999. i 2000. osvojio zlatne globuse\n bez da je ijednom bio nominiran za Oscara?",
     "Glavni grad Nigerije?",
@@ -45,13 +64,13 @@ class Prva{
     "Ime kojeg djeteta američkog celebrity para daje polovicu\nnaslova trilera Alfreda Hitchcocka iz 1959. godine?",
     "Što Gibonnijeva pjesma odgovara na naslov filma\nSpike Leeja iz 1989. godine?",
     "Tko je vodio NK Zagreb kad su 2002. godine\nšokantno osvojili naslov prvaka prve HNL?"};
-  String[] odgovori = {"Voldemort", "Junak našeg doba", "Jim Carrey", "Abuja", "Thomas Pynchon",
+  String[] odgovori = {"Voldemort","1912", "Aluminij", "Elbe", "Serotonin", "Šala", "Sumporasta",  "Jetra", "Prijamu", "2009", "Ruski", " Norveškoj", "180", "Tetida", "Kina", "Reimsu", "Davor Vugrinec", "Vancouver", "9", "William Culen", "Junak našeg doba", "Jim Carrey", "Abuja", "Thomas Pynchon",
                       "Četiri", "Aragorn", "Bariton", "Janjevo", "Noć vještica", "Ljudske", "Plinovitom", "Gonič", "Brzina svjetlosti", "Plava", "Bruce Willis", "U registraturi", "Labirint", "Rijeke", "Voda", "Usi", "Dioniza", "Guldenom", "Strasbourg", "Tablet", "Simpsoni", "Kalifornija", "Kljove", "Y", "Gustav Flaubert", "Trombociti", "Bumerang",
                       "Vatikan", "Real Madrid", "Ananas", "Corona", "Kraljev Grudobran", "Bob Dylan", "David Jones", "Cristiano Ronaldo", "Scijentologija", "Lady Gaga", "North West", "Činim pravu stvar", "Cico Kranjčar"};
-  int i, m=0, vrime = /*60000*/ 600, time = millis();
+  int i, m=0, vrime = 60000, time = millis(), numPitanja=pitanja.length;
   boolean q;
   String odgovor = "", feedback = "";
-  int[] iskoristeniIndeksi = new int[45];
+  int[] iskoristeniIndeksi = new int[numPitanja];
   int koristenaPitanja = 0;
   
   Prva(){
@@ -99,10 +118,10 @@ class Prva{
       
       fill(0);
       if(!q){
-        i = (int)random(45);
+        i = (int)random(numPitanja);
         while(koristenaPitanja != 0 && vecIskoristenoPitanje(iskoristeniIndeksi, i))
         {
-          i = (int)random(45);
+          i = (int)random(numPitanja);
         }
         iskoristeniIndeksi[koristenaPitanja] = i;
         koristenaPitanja += 1;
@@ -151,11 +170,14 @@ class Prva{
   
   void provjeriOdgovor(){
     if((odgovori[i].toLowerCase()).equals(odgovor.toLowerCase()) == true ){
+      song1.play();
       feedback = "Točno!";
       iznos += 3500;
+ 
     }
     else{
       feedback = odgovori[i];
+      song2.play();
     }
   }
 }

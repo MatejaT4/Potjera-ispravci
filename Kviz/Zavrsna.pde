@@ -4,16 +4,16 @@ class Zavrsna{
   }
   
   void iscrtaj(){
+    textAlign(CENTER);
     background(konfeti);
     textSize(28);
     fill(255);
-    if( win ){
+    if( win ){  
       fill(255,126);
-      rect(200, 310, 445, 100);
+      rect(200, 310, 400, 100);
       fill(tamnoplava);
       textSize(28);
-      text("Čestitamo!", 300, 345); 
-      text("Osvojili ste " + iznos + " kuna.", 250, 385);
+      text("Čestitamo, osvojili ste\n" + iznos + " kuna!", 400, 350);
     }
     else{
       background(izgubio);
@@ -21,12 +21,12 @@ class Zavrsna{
       rect(200, 310, 400, 100);
       fill(tamnoplava);
       textSize(28);
-      text( "Dobra igra na ploči,ali\n    ipak ste ulovljeni.", 260, 350);
+      text( "Dobra igra na ploči,ali\n    ipak ste ulovljeni.", 400, 350);
     }
     
     fill(255);
     textSize(20);
-    text( "Pritisnite SPACE za povratak na početnu stranicu.", 170, 480);
+    text( "Pritisnite SPACE za povratak na početnu stranicu.", 400, 480);
   }
   
   void provjeriBotun( int key ){

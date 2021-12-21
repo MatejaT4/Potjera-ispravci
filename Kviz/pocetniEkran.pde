@@ -1,33 +1,59 @@
 class Pocetni{
   
   String pitanje;
-  boolean q = false;
-  boolean rectOver = false;
+  boolean q = false, first=true;
   
   Pocetni(){
   }
   
   void iscrtaj(){
-    update();
+    
     if( pocetna ){
+      if(first==true){
+        song3.play();
+        first=false;
+      }
       background(naslovnica);
       
-      fill(tamnoplava);
+      fill(255);
       textSize(30);
-      text("Za početak potjere\n  pritisnite SPACE", 270, 550);
-     
-      if(rectOver==true){   
-        fill(color(150,150,150));
-      }
-      else{
-        noFill();
-      }
+      textAlign(CENTER);
+      text("Za početak potjere\npritisnite SPACE", 400, 650);
+      textAlign(LEFT);
+      
+      if(overRect(7, 750, 100, 40)==true)   
+        fill(color(255,255,255,90));
+      else
+        fill(color(190,170,220, 70));
       stroke(tamnoplava);
-     
       rect(7, 750, 100, 40);
       textSize(18);
       fill(tamnoplava);
       text("Pravila", 27, 777);
+      
+      if(lovacIgrac == true)
+        fill(255);
+      else if(overRect(75, 500, 300, 70)==true )   
+        fill(color(255,255,255,90));
+      else
+        fill(color(190,170,220, 70));
+      stroke(tamnoplava);
+      rect(75, 500, 300, 70);
+      textSize(27);
+      fill(tamnoplava);
+      text("IGRAČ VS. IGRAČ", 110,545);
+      
+      if(lovacIgrac == false)
+        fill(255);
+      else if(overRect(405, 500, 300, 70)==true)   
+        fill(color(255,255,255,90));
+      else
+        fill(color(190,170,220, 70));
+      stroke(tamnoplava);
+      rect(410, 500, 300, 70);
+      textSize(27);
+      fill(tamnoplava);
+      text("IGRAČ VS. RAČUNALO", 415,545);
       
       
       if(mousePressed)
@@ -37,39 +63,49 @@ class Pocetni{
           pravila = true;
           pocetna = false;
         }
+        if (mouseX >= 75  && mouseX <= 75 + 300 && mouseY >= 500 && mouseY <= 500 + 70)
+        {
+          lovacIgrac=true;
+        }
+        if (mouseX >= 405  && mouseX <= 405 + 300 && mouseY >= 500 && mouseY <= 500 + 70)
+        {
+          lovacIgrac=false;
+        }
       }
     }
     if( prva ){
       Faza1.iscrtaj();
+      song3.stop();
+      first=true;
     }
     if( druga ){
       Faza2.iscrtaj();
+      song3.stop();
+      first=true;
     }
     if( izbor ){
       Izbor.iscrtaj(); 
+      song3.stop();
+      first=true;
     }
     if( treca ){
       Faza3.iscrtaj(); 
+      song3.stop();
+      first=true;
     }
     if( zavrsni ){
       Zavrsni.iscrtaj(); 
+      song3.stop();
+      first=true;
     }
     if( pravila ){
       ispisPravila.iscrtaj(); 
     }
   }
-  
-  void update() {
-    if ( overRect() ) {
-      rectOver = true;
-    } else {
-      rectOver = false;
-    }
-  }
 
-  boolean overRect() {
-    if (mouseX >= 7 && mouseX <= 7+100 && 
-        mouseY >= 750 && mouseY <= 750+40) {
+  boolean overRect(int x, int y, int width, int height) {
+    if (mouseX >= x && mouseX <= x+width && 
+        mouseY >= y && mouseY <= y+height) {
       return true;
     } else {
       return false;
@@ -90,5 +126,13 @@ class Pocetni{
       izbor = true;
     }
     if( key == ' ' && zavrsni ) Zavrsni.provjeriBotun( key );
+    
+    if( keyCode == LEFT ){
+       lovacIgrac=true;
+    }
+    if( keyCode == RIGHT ){
+       lovacIgrac=false;
+     }
+    
   }
 }

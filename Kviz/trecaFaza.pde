@@ -30,6 +30,23 @@ class Treca{
     "Koja je mjerna jedinica dobila\nime po talijanskom plemiću?",
     "U kojem se gradu nalazi sveučilište Harvard?",
     "'Od svih lokala u svim gradovima u cijelom\nsvijetu, ona uđe u moj', je citat iz\nkojeg filmskog klasika?",
+    "Koji filozof se tradicionalno smatra prvim zapadnjačkim\n filozofom i ocem znanosti?",
+    "Tko je izumio fotografski film?",
+    "Zapis 'C' predstavlja koju vrijednost u\nsustavu rimskih brojeva?",
+    "U biblijskoj knjizi 'Otkrivljenje' kako\nse zove zvijezda koja je pala s neba?",
+    "Tko je napisao 'Povratak Filipa Latinovitcha'?",
+    "Tko se smatra izumiteljem\n mikrovalne pećnice?",
+    "Koji se broj veže za osnivača TNT grupe\nu Alan Ford stripovima?",
+    "Koja općina u Crnoj Gori ima\n najveći broj Hrvata?",
+    "Kako se zvala žena Salvadora Dalija?",
+    "Etruščani su naseljavali današnju: ",
+    "Koja je kineska kompanija optužena za špijunažu\n u trgovačkom ratu između SAD-a i Kine?",
+    "Koju knjigu je napisao George Orwell?",
+    "Hepatitis je upala kojeg organa?",
+    "Što pripada književnom rodu - diskurzivni rod?",
+    "Upala kojeg organa se zove otitis?",
+    "Nagradu Oscar za najbolji film 2010. dobio je:",
+    "Tko je napisao glazbu za gilm 'Glembajevi'?",
     "Koje su bile posljednje riječi Charlesa\nFostera Kanea?"};
   String[][] odgovori = { {"GTA V", "Just Cause 3", "Uncharted 4"}, {"Zec", "Vuk", "Lisica"},
     {"Šibenik", "Split", "Dubrovnik"}, {"influencera", "youtubera", "blogera"}, 
@@ -44,17 +61,22 @@ class Treca{
     {"600", "100", "300"}, {"u Hollywoodu", "u Americi", "na divljem zapadu"},
     {"Superior", "Michigan", "Huron"}, {"Pomodoro", "Cipolla", "Peperoncino"},
     {"Kauč", "Stolicu", "Stol"}, {"Volt", "Pascal", "Ohm"}, {"Cambridge", "New York", "Providence"},
-    {"Casablanca", "Građanin Kane", "Divan Život"}, {"Rosebud", "Snow globe", "Xanadu"}};
-  int a = -1, b = -1, c = -1, i, igr = -1, lov = -1, lpos = -1;
+    {"Casablanca", "Građanin Kane", "Divan Život"}, {"Tales", "Pitagora", "Demokrit"}, {"George Eastman", "Louis Daguerre", "Henry Talbot"}, {"100", "50", "10"}, {"Pelin", "Tora", "Danica"} ,
+    {"Miroslav Krleža", "Ivo Andrić", "Vladimir Nazor"}, {"Percy Spencer", "Arthur Fry", "Spencer Silver"}, {"1", "3", "7"}, {"Tivat", "Kotor", "Herceg Novi"}, {"Gala", "Baza", "Guba"},
+    {"Italiju", "Libiju", "Grčku"}, {"Huawei", "Samsung", "Xiaomi"}, {"Životinjska farma", "Veliki Gatsby", "Starac i more"}, {"Jetre", "Gušterače", "Mozga"}, {"Dnevnik", "Himna", "Roman"}, 
+    {"Uha", "Oka", "Nosa"}, {"The Hurt Locker", "Slumdog Millionare", "Avatar"}, {"Arsen Dedić", "Alfi Kabiljo", "Boris Papandopulo"} ,{"Rosebud", "Snow globe", "Xanadu"}};
+  int a = -1, b = -1, c = -1, i, igr = -1, lov = -1, lpos = -1, brojac, numPitanja=pitanja.length;
   boolean q = false, check = false, p = false;
-  int[] iskoristeniIndeksi = new int[32];
+  int[] iskoristeniIndeksi = new int[numPitanja];
   int koristenaPitanja = 0;
-  boolean lovacIgrac=false;
+  int time = millis();
   
   Treca(){
   }
   
   void iscrtaj(){
+    brojac--;
+    textAlign(LEFT);
     background(voditelj);
     nacrtajPlocu();
     fill(255, 126);
@@ -63,9 +85,9 @@ class Treca{
     rect( 292, 610, 217, 40 );
     rect( 533, 610, 217, 40 );
     if(!q){
-      i = (int)random(32);
+      i = (int)random(numPitanja);
       while(koristenaPitanja != 0 && vecIskoristenoPitanje(iskoristeniIndeksi, i))
-        i = (int)random(32);
+        i = (int)random(numPitanja);
       iskoristeniIndeksi[koristenaPitanja] = i;
       koristenaPitanja += 1;
       q = true;
@@ -84,6 +106,10 @@ class Treca{
       rect( 50, 360, 150, 40 );
       fill(255);
       text( "Igrač", 90, 390);
+      if(lovacIgrac==false && millis()>time+1000){
+        odigrajLovca();
+        time=millis();
+      }
     }
     else if( igr == -1 && lov != -1 ){
       fill(lovac);
@@ -103,16 +129,30 @@ class Treca{
       if( igr == a ) rect( 50, 610, 217, 40 );
       if( igr == b ) rect( 292, 610, 217, 40 );
       if( igr == c ) rect( 533, 610, 217, 40 );
-      if( check ){
+      if(  millis()>time+1000 ){
         fill(tocno);
         if( 0 == a ) rect( 50, 610, 217, 40 );
         if( 0 == b ) rect( 292, 610, 217, 40 );
         if( 0 == c ) rect( 533, 610, 217, 40 );
+        fill(255);
+        textSize(20);
+        textAlign(CENTER);
+        text("Pritisnite ENTER za sljedeće pitanje.", 400, 700 );
+        textAlign(LEFT);
+        if(check==false){
+          if( igr == 0 ) pos++;
+          if( lov == 0 ) lpos++;
+          p=true;
+          check=true;
+          nacrtajPlocu();
       }
+      }
+    
       fill(lovac);
       if( lov == a ) rect( 50, 610, 35, 40 );
       if( lov == b ) rect( 292, 610, 35, 40 );
       if( lov == c ) rect( 533, 610, 35, 40 );
+      
     }
     fill(0);
     textSize(22);
@@ -125,30 +165,33 @@ class Treca{
     if( key == 'a' && igr == -1){
       igr = a;
       if(lovacIgrac==false){
-        odigrajLovca();
+        time=millis();
       }
     }
     if( key == 's' && igr == -1){
       igr = b;
       if(lovacIgrac==false){
-        odigrajLovca();
+        time=millis();
       }
     }
     if( key == 'd' && igr == -1){
       igr = c;
       if(lovacIgrac==false){
-        odigrajLovca();
+        time=millis();
       }
     }
     if(lovacIgrac== true){
       if( key == 'j' && lov == -1){
         lov = a;
+        time=millis();
       }
       if( key == 'k' && lov == -1){
         lov = b;
+        time=millis();
       }
       if( key == 'l' && lov == -1){
         lov = c;
+        time=millis();
       }
     }
     else{
@@ -178,14 +221,14 @@ class Treca{
       c = -1;
       q = false;
     }
-    if( keyCode == ENTER && lov != -1 && igr != -1 && check ){
+   /* if( keyCode == ENTER && lov != -1 && igr != -1 && check ){
       p = true;
       if( igr == 0 ) pos++;
       if( lov == 0 ) lpos++;
     }
     if( keyCode == ENTER && lov != -1 && igr != -1 ){
       check = true;
-    }
+    }*/
   }
   
   boolean vecIskoristenoPitanje(int[] arr, int val) {
@@ -227,9 +270,11 @@ class Treca{
     fill(255);
     textSize(26);
     if( lpos != pos ){
-      text(iznos, 350, pos * 50 + 35);
+      textAlign(CENTER);
+      text(iznos, 400, pos * 50 + 35);
       triangle( 180+10*pos, pos*50+10, 180+10*pos, pos*50+40, 200+10*pos, pos*50+25 );
       triangle( 600-10*pos, pos*50+10, 600-10*pos, pos*50+40, 580-10*pos, pos*50+25 );
+      textAlign(LEFT);
     }
     fill(0);
     if( lpos != -1 ) triangle( 190+10*pos, lpos*50+10, 590-10*pos, lpos*50+10, 400, lpos*50+40 );
@@ -241,6 +286,6 @@ class Treca{
     else if(num<85)
       lov=1;
     else
-      lov=2;  
+      lov=2;
   }
 }

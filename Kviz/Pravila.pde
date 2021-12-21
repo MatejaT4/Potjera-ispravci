@@ -36,7 +36,7 @@ class Pravila{
     text("Upute za odgovaranje na pitanja", 150, 630);
     textSize(18);
     textAlign(LEFT);
-    String upute = "* igrač igra na tipkama a, s, d (odgovor pod a, pod b i pod c), a lovac sa j, k, l\n* nakon što obojica odaberu odgovor potrebno je kliknuti tipku Enter 3 puta:\n        * kako bi se pokazao točan odgovor\n        * za pomak potrebne pomake na igraćoj ploči\n        * za prikaz idućeg pitanja";
+    String upute = "* igrač igra na tipkama a, s, d (odgovor pod a, pod b i pod c), a lovac sa j, k, l\n";
     text(upute, 25, 675);
     
     
